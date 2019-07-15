@@ -6,4 +6,6 @@ gem_group :development, :test do
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 3.0'
   gem 'rspec-wait'
+
+  gem 'pry-rails'
 end
