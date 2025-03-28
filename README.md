@@ -1,3 +1,18 @@
+# TL;DR
+
+```sh
+# clone this repo
+git clone git@github.com:failure-driven/test-driven-rails-template.git
+
+# create a rails new project using the template
+rails _8.0.2_ new rails8-demo \
+    --database sqlite3 \
+    --minimal \
+    --skip-test \
+    --skip-keeps \
+    -m test-driven-rails-template/template.rb
+```
+
 # test-driven-rails-template
 
 A Rails template to bootstrap test driven rails project. The template is in
@@ -10,6 +25,13 @@ Basic useage
 
 ```sh
 rails _6.0.0_ new signup-demo --database=postgresql --skip-test -m template.rb
+# OR
+rails _8.0.2_ new rails8-demo \
+    --database sqlite3 \
+    --minimal \
+    --skip-test \
+    --skip-keeps \
+    -m template.rb
 ```
 
 Full useage
@@ -68,12 +90,48 @@ heroku run rake db:migrate
 
 ## TODO
 
+- some ideas for templates
+    - https://github.com/mattbrictson/rails-template
+    - BUT the author has moved onto their nextgem
+    - https://github.com/mattbrictson/nextgen
+
+[ ] rubocop and erblint ? and binstubs?
+    ```sh
+    def run_rubocop_autocorrections
+      run_with_clean_bundler_env "bin/rubocop -A --fail-level A > /dev/null || true"
+      run_with_clean_bundler_env "bin/erblint --lint-all -a > /dev/null || true"
+    end
+    ```
+[ ] example using the pause service and force api error?
+[ ] deal with `.rubocop.yml` conflict (only rails 7 not rails 8)
+[ ] handle `bundle install` when no internet
+[ ] binstub for bin/dev - rails 7 only? seems ok in rails 8
+[ ] Makefile vs Justfile
+[ ] structure.sql over schema.rb
 [ ] fix if there are old versions of gems installed and it breaks on trying to
     install rspec
 [ ] pass parameters like --database and --skip-test directly in the template.rb
 [ ] add files with some demo tests
-[ ] add capybara setup
 [ ] make some of this setup more configurable
 [ ] add a test build to make sure this template can still create a rails
     project based on various starting versions of Rails, Ruby and Node
 
+### DONE
+
+[x] rspec binstub
+[x] add capybara setup
+[x] test route
+    ```ruby
+    if Rails.env.test?
+      # a test only route used by spec/features/it_works_spec.rb
+      get "test_root", to: "rails/welcome#index", as: "test_root_rails"
+    end
+    ```
+[x] .rspec `--include rails_helper`
+[x] rubocop -A
+[x] can you populate via it_works_spec.rb via ~~ERB~~ .tt
+[x] see how good a "modify works" - seems OK
+[x] rubocop setup
+[x] make sure all example steps are displayed
+    - as per https://github.com/railsware/rspec-example_steps/issues/14
+    - is this new in rails 8 again?
