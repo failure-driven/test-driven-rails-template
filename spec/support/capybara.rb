@@ -41,13 +41,13 @@ Capybara.register_driver :selenium_chrome do |app|
   end
 end
 
-Capybara::Screenshot.webkit_options = {
-  width: 1024,
-  height: 768
-}
+# Capybara::Screenshot.webkit_options = {
+#   width: 1024,
+#   height: 768
+# }
 
-Capybara::Screenshot.autosave_on_failure = false
-Capybara::Screenshot.prune_strategy = :keep_last_run
+# Capybara::Screenshot.autosave_on_failure = false
+# Capybara::Screenshot.prune_strategy = :keep_last_run
 
 Webdrivers.cache_time = 1.month.to_i
 

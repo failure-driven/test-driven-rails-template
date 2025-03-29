@@ -2,7 +2,7 @@ def source_paths
   Array(super) + [__dir__]
 end
 
-gem_group :test do
+gem_group :development, :test do
   gem "capybara"
   gem "capybara-inline-screenshot"
   gem "rspec-example_steps"
@@ -28,8 +28,10 @@ generate "rspec:install"
 run "bundle binstubs rspec-core"
 
 copy_file ".rubocop.yml", force: true
+copy_file "spec/features/blog_crud_spec.rb"
 copy_file "spec/support/capybara.rb"
 copy_file "spec/support/pages/helpers/forms_helper.rb"
+copy_file "spec/support/pages/blog_page.rb"
 copy_file "spec/support/pages/it_works_root.rb"
 copy_file "spec/support/force_api_error.rb"
 copy_file "spec/support/pause_service.rb"
@@ -92,7 +94,7 @@ inject_into_file(
     " https://guides.rubyonrails.org/routing.html\n"
 ) do
   <<~RUBY
-    if Rails.env.test?
+    if Rails.env.development? || Rails.env.test?
       # a test only route used by spec/features/it_works_spec.rb
       get "test_root", to: "rails/welcome#index", as: "test_root_rails"
     end

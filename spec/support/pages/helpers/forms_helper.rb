@@ -19,7 +19,10 @@ module Pages
 
             def fill_in(**args)
               args.each do |field, value|
-                element = find("form[action^=\"#{get_action}\"] input[name=\"#{get_model}[#{field}]\"]")
+                element = find(
+                  "form[action^=\"#{get_action}\"] " \
+                  "input[name=\"#{get_model}[#{field}]\"],textarea[name=\"#{get_model}[#{field}]\"]"
+                )
                 if SETTABLE_ELEMENTS.include? element[:type]
                   element.set(value)
                 else
@@ -30,7 +33,7 @@ module Pages
 
             def submit!(...)
               fill_in(...)
-              find("form[action^=\"#{get_action}\"] input[type=submit]").click
+              find("form[action^=\"#{get_action}\"] input[type=submit],button[type=submit]").click
             end
           end
         end
