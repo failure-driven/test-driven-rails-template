@@ -1,0 +1,8 @@
+<%= link_to(
+  @action_url,
+  method: @method,
+  data: @data,
+  class: @class
+) do %>
+  <span class="inline-block mr-2 w-4"><i class="<%= @icon_class %>"></i></span><%= @label %>
+<% end %>
