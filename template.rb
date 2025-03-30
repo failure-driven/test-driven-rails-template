@@ -94,7 +94,7 @@ inject_into_file(
     " https://guides.rubyonrails.org/routing.html\n"
 ) do
   <<~RUBY
-    if Rails.env.development? || Rails.env.test?
+    if Rails.env.local?
       # a test only route used by spec/features/it_works_spec.rb
       get "test_root", to: "rails/welcome#index", as: "test_root_rails"
     end
