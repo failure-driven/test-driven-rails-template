@@ -5,11 +5,15 @@
 #
 #   bin/rails \
 #     generate scaffold Blog \
-#     --skip-helper \
-#     --test-framework rspec \
 #     title:string \
 #     body:text \
-#     author:string
+#     author:string \
+#     --skip-helper \
+#     --test-framework rspec \
+#     --force
+#
+#   may need to run a couple of times
+#
 # AND
 #   bin/rails db:migrate
 #
