@@ -95,6 +95,17 @@ heroku run rake db:migrate
     - BUT the author has moved onto their nextgem
     - https://github.com/mattbrictson/nextgen
 
+- [ ] **minimal for BDD Workshop**
+    - [ ] db/structure.sql
+    - [ ] page fragments
+    - [ ] Basic CSS - scss, basic styles
+        - [ ] simple ability to add bulma and/or bootstrap
+    - [ ] Basic JS
+    - [ ] View components for:
+        - [ ] Action button,
+        - [ ] Form field with errors?
+        - [ ] React component
+
 [ ] rubocop and erblint ? and binstubs?
     ```sh
     def run_rubocop_autocorrections
