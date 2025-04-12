@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PauseService
   def with_api_route_paused(method:, url:)
     Rails.application.config.should_pause = {method: method, url: url}

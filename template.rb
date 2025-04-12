@@ -46,10 +46,13 @@ generate "annotate_rb:install"
 run "bundle binstubs rspec-core"
 
 copy_file ".rubocop.yml", force: true
-copy_file 'app/components/action_button_component.html.erb'
-copy_file 'app/components/action_button_component.rb'
-copy_file 'app/controllers/demos_controller.rb'
-copy_file 'app/views/demos/show.html.erb'
+copy_file "app/assets/stylesheets/demo.css"
+copy_file "app/components/action_button_component.html.erb"
+copy_file "app/components/action_button_component.rb"
+copy_file "app/controllers/demos_controller.rb"
+copy_file "app/controllers/concerns/endpoint_testing_concern.rb"
+copy_file "app/javascript/controllers/disable_controller.js"
+copy_file "app/views/demos/show.html.erb"
 copy_file "spec/components/action_button_component_spec.rb"
 copy_file "spec/features/blog_crud_spec.rb"
 copy_file "spec/features/demo_spec.rb"
@@ -65,7 +68,8 @@ copy_file "Makefile"
 template "spec/features/it_works_spec.rb.tt"
 template ".tool-versions.tt"
 
-gsub_file '.rspec', '--require spec_helper', '--require rails_helper'
+gsub_file ".rspec", "--require spec_helper", "--require rails_helper"
+
 inject_into_file ".rspec", after: "--require rails_helper\n" do
   <<~RUBY
     --format documentation
@@ -152,6 +156,16 @@ inject_into_file "config/routes.rb", before: "# Defines the root path route (\"/
   <<~RUBY
    resource :demo, only: [:show]
 
+  RUBY
+end
+
+inject_into_file "app/assets/stylesheets/application.css", after: "*/\n" do
+  <<~RUBY
+
+    /*
+     * css importing not working ¯\_(ツ)_/¯
+     * @import "demo";
+     */
   RUBY
 end
 

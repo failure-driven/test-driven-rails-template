@@ -16,7 +16,9 @@ RSpec.feature "Demo a number of ideas", :js do
         "a plain HTML input tag of type=\"button\"",
         "a rails button_tag",
         "A rails form_for with a submit inside",
-        "A view_componewnt action_button",
+        "A rails form_for with a submit inside with enabled/disabled styling",
+        "A view_componewnt action_button using stimulus",
+        "A stimulus component",
       ])
     end
 
@@ -52,8 +54,25 @@ RSpec.feature "Demo a number of ideas", :js do
       expect(page).to have_current_path(demo_path(commit: "Demos"))
     end
 
+    # NOTE: this is not automatically disabling the button in the form
+    # When "the rails form loading is submitted" do
+    #   demo_page.rails_form_loading.click
+    # end
+
+    # Then "the page is reloaded" do
+    #   expect(page).to have_current_path(demo_path(commit: "Demos"))
+    # end
+
     When "the view_component action button is clicked" do
       demo_page.view_component.click
+    end
+
+    Then "the page is reloaded" do
+      expect(page).to have_current_path(demo_path)
+    end
+
+    When "the sitmulus component is clicked" do
+      demo_page.stimulus_component.click
     end
 
     Then "the page is reloaded" do

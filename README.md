@@ -11,6 +11,19 @@ rails _8.0.2_ new rails8-demo \
     --skip-test \
     --skip-keeps \
     -m test-driven-rails-template/template.rb
+
+# or with JS and CSS processing
+rails _8.0.2_ new rails8-demo \
+    --database sqlite3 \
+    --skip-test \
+    --skip-keeps \
+    --no-skip-turbo \
+    --no-skip-javascript \
+    --javascript=importmap \
+    -m test-driven-rails-template/template.rb
+
+bin/rails importmap:install
+bin/rails stimulus:install:importmap
 ```
 
 # test-driven-rails-template
@@ -97,7 +110,8 @@ heroku run rake db:migrate
 
 - [ ] **feedback**
     - [x] rubocop_cache added to .gitignore
-    - [ ] how to make it work with javascript and css processor
+    - [x] how to make it work with javascript
+        - [ ] and css processor?
     - [x] rubocop requires enabling
   ```ruby
   # config.infer_spec_type_from_file_location!
@@ -112,7 +126,7 @@ heroku run rake db:migrate
     - [x] page fragments
     - [ ] Basic CSS - scss, basic styles
         - [ ] simple ability to add bulma and/or bootstrap
-    - [ ] Basic JS
+    - [x] Basic JS
     - [ ] View components for:
         - [x] Action button,
         - [ ] Form field with errors?
@@ -143,6 +157,8 @@ heroku run rake db:migrate
     end
     ```
 [ ] example using the pause service and force api error?
+    - have added a concern and buttons that change state in demo#show but did
+      not manage the test to succeed?
 [ ] deal with `.rubocop.yml` conflict (only rails 7 not rails 8)
 [ ] handle `bundle install` when no internet
 [ ] binstub for bin/dev - rails 7 only? seems ok in rails 8

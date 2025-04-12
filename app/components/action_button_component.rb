@@ -11,9 +11,11 @@ class ActionButtonComponent < ViewComponent::Base
     disable_with << tag.span(tag.i("", class: "fad fa-sync fa-spin"), class: "inline-block mr-2 w-4")
     disable_with << @label
     @method = method || :get
-    @data = data.merge(
-      disable: true,
-      "disable-with": safe_join(disable_with),
-    )
+    @data = {
+      disable_with: safe_join(disable_with),
+      controller: "disable",
+      action: "click->diable#disableButton",
+      disable_target: "button",
+    }.merge(data)
   end
 end

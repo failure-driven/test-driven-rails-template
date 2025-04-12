@@ -8,7 +8,9 @@ module Pages
     element :html_input, "input[data-testid=html_input]"
     element :rails_button, "button[data-testid=rails_button]"
     element :rails_form, "input[data-testid=rails_form]"
+    element :rails_form_loading, "button[data-testid=rails_form_loading]"
     element :view_component, "a[data-testid=view_component]"
+    element :stimulus_component, "button[data-testid=stimulus_component]"
 
     sections :link_sections, "section[data-testid|=section]" do
       element :text, "p"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ForceApiError
   def force_api_error(method:, url:, error:)
     Rails.application.config.should_crash = {
