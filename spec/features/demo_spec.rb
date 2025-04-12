@@ -54,14 +54,13 @@ RSpec.feature "Demo a number of ideas", :js do
       expect(page).to have_current_path(demo_path(commit: "Demos"))
     end
 
-    # NOTE: this is not automatically disabling the button in the form
-    # When "the rails form loading is submitted" do
-    #   demo_page.rails_form_loading.click
-    # end
+    When "the rails form loading is submitted" do
+      demo_page.rails_form_loading.click
+    end
 
-    # Then "the page is reloaded" do
-    #   expect(page).to have_current_path(demo_path(commit: "Demos"))
-    # end
+    Then "the page is reloaded" do
+      expect(page).to have_current_path(demo_path(commit: "Demos"))
+    end
 
     When "the view_component action button is clicked" do
       demo_page.view_component.click

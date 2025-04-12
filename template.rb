@@ -159,16 +159,6 @@ inject_into_file "config/routes.rb", before: "# Defines the root path route (\"/
   RUBY
 end
 
-inject_into_file "app/assets/stylesheets/application.css", after: "*/\n" do
-  <<~RUBY
-
-    /*
-     * css importing not working ¯\_(ツ)_/¯
-     * @import "demo";
-     */
-  RUBY
-end
-
 run "make"
 run "make lint-fix"
 run "make build"

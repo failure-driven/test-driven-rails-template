@@ -24,6 +24,7 @@ rails _8.0.2_ new rails8-demo \
 
 bin/rails importmap:install
 bin/rails stimulus:install:importmap
+bin/rails turbo:install:importmap
 ```
 
 # test-driven-rails-template
@@ -111,7 +112,7 @@ heroku run rake db:migrate
 - [ ] **feedback**
     - [x] rubocop_cache added to .gitignore
     - [x] how to make it work with javascript
-        - [ ] and css processor?
+        - [ ] and css processor? css works but we probably want sass
     - [x] rubocop requires enabling
   ```ruby
   # config.infer_spec_type_from_file_location!
@@ -132,6 +133,7 @@ heroku run rake db:migrate
         - [ ] Form field with errors?
         - [ ] React component
 
+[ ] has an issue with method: :delete and turbo
 [x] annotations
     - [x] controllers `chusaku`
     - [x] models `annotaterb`
