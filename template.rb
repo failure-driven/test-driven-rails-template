@@ -21,6 +21,7 @@ gem_group :development, :test do
 end
 
 gem_group :development do
+  # rubocop linting related gems
   gem "rubocop-capybara", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
@@ -28,11 +29,19 @@ gem_group :development do
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
   gem "standard", require: false
+
+  # annotate DB fields on models
+  gem "annotaterb", require: false
+
+  # annotate controllers with route actions
+  gem "chusaku", require: false
 end
 
 run "bundle install"
 
 generate "rspec:install"
+
+generate "annotate_rb:install"
 
 run "bundle binstubs rspec-core"
 

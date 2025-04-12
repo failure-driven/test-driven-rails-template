@@ -26,8 +26,14 @@ lint:
 lint-fix:
 	bundle exec rubocop -A
 
+.PHONY: annotate
+annotate:
+	bundle exec annotaterb routes
+	bundle exec annotaterb models
+	bundle exec chusaku
+
 .PHONY: build
-build: test lint
+build: test lint annotate
 
 .PHONY: run
 run:

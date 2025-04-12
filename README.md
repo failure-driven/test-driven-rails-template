@@ -118,10 +118,18 @@ heroku run rake db:migrate
         - [ ] Form field with errors?
         - [ ] React component
 
-[ ] annotations
-    - controllers
-    - models
+[x] annotations
+    - [x] controllers `chusaku`
+    - [x] models `annotaterb`
 [ ] erb-lint https://github.com/Shopify/erb_lint
+    and https://github.com/Shopify/better-html#configuration
+    ```sh
+    bundle add erb_lint
+    bundle exec erb_lint  --lint-all --autocorrect
+    # hand generated an .erb_lint.yml file
+    # probably need a .better-html.yml as well
+    # but had a bunch of issues - need to read the docs more
+    ```
 [ ] make it work with `Dockerfile` via `--no-skip-docker`
     ```sh
     docker run --env RAILS_ENV=development -p 3000:3000 $(docker build -q .)
