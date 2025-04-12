@@ -108,16 +108,20 @@ heroku run rake db:migrate
 
     - [x] `.tool-versions` for ASDF
 - [ ] **minimal for BDD Workshop**
-    - [ ] db/structure.sql
-    - [ ] page fragments
+    - [x] db/structure.sql
+    - [x] page fragments
     - [ ] Basic CSS - scss, basic styles
         - [ ] simple ability to add bulma and/or bootstrap
     - [ ] Basic JS
     - [ ] View components for:
-        - [ ] Action button,
+        - [x] Action button,
         - [ ] Form field with errors?
         - [ ] React component
 
+[ ] annotations
+    - controllers
+    - models
+[ ] erb-lint https://github.com/Shopify/erb_lint
 [ ] make it work with `Dockerfile` via `--no-skip-docker`
     ```sh
     docker run --env RAILS_ENV=development -p 3000:3000 $(docker build -q .)

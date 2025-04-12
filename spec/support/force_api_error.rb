@@ -3,7 +3,7 @@ module ForceApiError
     Rails.application.config.should_crash = {
       method: method,
       url: url,
-      error: error
+      error: error,
     }
   end
 

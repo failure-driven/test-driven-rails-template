@@ -21,7 +21,7 @@ module Pages
               args.each do |field, value|
                 element = find(
                   "form[action^=\"#{get_action}\"] " \
-                  "input[name=\"#{get_model}[#{field}]\"],textarea[name=\"#{get_model}[#{field}]\"]"
+                  "input[name=\"#{get_model}[#{field}]\"],textarea[name=\"#{get_model}[#{field}]\"]",
                 )
                 if SETTABLE_ELEMENTS.include? element[:type]
                   element.set(value)

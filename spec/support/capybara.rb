@@ -34,7 +34,7 @@ Capybara.register_driver :selenium_chrome do |app|
   # }
   Capybara::Selenium::Driver.new(
     app,
-    **args
+    **args,
   ).tap do |driver|
     # Enable slomo mode
     driver.browser.send(:bridge).singleton_class.prepend(SlomoBridge)

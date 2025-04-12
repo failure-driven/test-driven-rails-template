@@ -50,8 +50,9 @@
 #   spec/models/blog_spec.rb
 #     it "is valid" do
 #       blog = Blog.new(
-#         title: "the title", body: "the body",
-#         author: "the author"
+#         title: "the title",
+#         body: "the body",
+#         author: "the author",
 #       )
 #       expect(blog).to be_valid
 #     end

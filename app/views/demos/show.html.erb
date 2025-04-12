@@ -1,0 +1,65 @@
+<h1>Demos</h1>
+
+<section data-testid="section-rails_link">
+  <p>
+    a basic link via rails <code>link_to</code>
+  </p>
+  <%= link_to "Demos", demo_path, data: { testid: "rails_link" } %>
+</section>
+
+<section data-testid="section-html_input">
+  <p>
+    a plain HTML input tag of <code>type="button"</code>
+  </p>
+  <input
+      type="button"
+      onclick="location.href='<%= demo_path %>';"
+      value="Demos"
+      data-testid="html_input"
+  />
+</section>
+
+<section data-testid="section-rails_button">
+  <p>
+    a rails <code>button_tag</code>
+  </p>
+
+  <%= button_tag(
+      "Demos",
+      onClick: "location.href='#{demo_path}'",
+      data: {
+        disable_with: "Please wait...",
+        testid: "rails_button",
+      },
+  ) %>
+</section>
+
+<section data-testid="section-rails_form">
+  <p>
+    A rails <code>form_for</code> with a submit inside
+  </p>
+
+  <%= form_with(url: [:demo], method: :get) do |form| %>
+    <%= form.submit(
+      value: "Demos",
+      data: {
+        testid: "rails_form",
+      },
+    ) %>
+  <% end %>
+</section>
+
+<section data-testid="section-view_component">
+  <p>
+    A <strong>view_componewnt</strong> <code>action_button</code>
+  </p>
+
+  <%= render(ActionButtonComponent.new(
+      label: "Demos",
+      action_url: demo_path,
+      icon: "go",
+      data: {
+        testid: "view_component",
+      },
+  )) %>
+</section>

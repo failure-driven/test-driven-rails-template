@@ -2,6 +2,15 @@ def source_paths
   Array(super) + [__dir__]
 end
 
+inject_into_file "Gemfile", before: "# Windows does not include zoneinfo files, so bundle the tzinfo-data gem\n" do
+  <<-RUBY
+
+    # Reusable, testable view components viewcomponent.org
+    gem "view_component"
+
+  RUBY
+end
+
 gem_group :development, :test do
   gem "capybara"
   gem "capybara-inline-screenshot"
@@ -28,10 +37,17 @@ generate "rspec:install"
 run "bundle binstubs rspec-core"
 
 copy_file ".rubocop.yml", force: true
+copy_file 'app/components/action_button_component.html.erb'
+copy_file 'app/components/action_button_component.rb'
+copy_file 'app/controllers/demos_controller.rb'
+copy_file 'app/views/demos/show.html.erb'
+copy_file "spec/components/action_button_component_spec.rb"
 copy_file "spec/features/blog_crud_spec.rb"
+copy_file "spec/features/demo_spec.rb"
 copy_file "spec/support/capybara.rb"
 copy_file "spec/support/pages/helpers/forms_helper.rb"
 copy_file "spec/support/pages/blog_page.rb"
+copy_file "spec/support/pages/demo_page.rb"
 copy_file "spec/support/pages/it_works_root.rb"
 copy_file "spec/support/force_api_error.rb"
 copy_file "spec/support/pause_service.rb"
@@ -44,6 +60,23 @@ gsub_file '.rspec', '--require spec_helper', '--require rails_helper'
 inject_into_file ".rspec", after: "--require rails_helper\n" do
   <<~RUBY
     --format documentation
+  RUBY
+end
+
+inject_into_file "config/application.rb", before: " end\nend\n" do
+  <<~RUBY
+
+      config.active_record.schema_format = :sql
+  RUBY
+end
+
+inject_into_file(
+  "spec/rails_helper.rb",
+  after: "# Add additional requires below this line. Rails is not loaded until this point!\n",
+ ) do
+  <<~RUBY
+    require "view_component/test_helpers"
+    require "view_component/system_test_helpers"
   RUBY
 end
 
@@ -82,8 +115,13 @@ inject_into_file "spec/rails_helper.rb", after: "# config.filter_gems_from_backt
       :example_started,
       :example_step_passed,
       :example_step_pending,
-      :example_step_failed
+      :example_step_failed,
     )
+
+    # view component render_inline helpers
+    config.include ViewComponent::TestHelpers, type: :component
+    config.include ViewComponent::SystemTestHelpers, type: :component
+    config.include Capybara::RSpecMatchers, type: :component
   RUBY
 end
 
@@ -97,6 +135,13 @@ inject_into_file(
       # a test only route used by spec/features/it_works_spec.rb
       get "test_root", to: "rails/welcome#index", as: "test_root_rails"
     end
+
+  RUBY
+end
+
+inject_into_file "config/routes.rb", before: "# Defines the root path route (\"/\")\n" do
+  <<~RUBY
+   resource :demo, only: [:show]
 
   RUBY
 end
