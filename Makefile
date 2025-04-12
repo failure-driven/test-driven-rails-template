@@ -33,6 +33,12 @@ build: test lint
 run:
 	bin/dev
 
+.PHONY: clean
+clean:
+	rm -rf rubocop_cache
+	rm -rf log/*
+	rm -rf tmp/*
+
 .PHONY: usage
 usage:
 	@echo
@@ -45,9 +51,12 @@ usage:
 	@echo "Development"
 	@echo
 	@echo "${YELLOW}make setup${RESET}               setup dependancies"
+	@echo
 	@echo "${YELLOW}make test${RESET}                run tests"
 	@echo "${YELLOW}make lint${RESET}                lint with rubocop"
 	@echo "${YELLOW}make lint-fix${RESET}            lint-fix with rubocop -A"
+	@echo
+	@echo "${YELLOW}make build${RESET}               test & lint the app"
 	@echo
 	@echo "${YELLOW}make run${RESET}                 run the app"
 	@echo

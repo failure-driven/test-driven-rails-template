@@ -95,6 +95,18 @@ heroku run rake db:migrate
     - BUT the author has moved onto their nextgem
     - https://github.com/mattbrictson/nextgen
 
+- [ ] **feedback**
+    - [x] rubocop_cache added to .gitignore
+    - [ ] how to make it work with javascript and css processor
+    - [x] rubocop requires enabling
+  ```ruby
+  # config.infer_spec_type_from_file_location!
+  ```
+       seems like this is out of sync with rails_helper.rb which
+
+       > but this behaviour is considered legacy and will be removed in a future version.
+
+    - [x] `.tool-versions` for ASDF
 - [ ] **minimal for BDD Workshop**
     - [ ] db/structure.sql
     - [ ] page fragments
@@ -106,6 +118,11 @@ heroku run rake db:migrate
         - [ ] Form field with errors?
         - [ ] React component
 
+[ ] make it work with `Dockerfile` via `--no-skip-docker`
+    ```sh
+    docker run --env RAILS_ENV=development -p 3000:3000 $(docker build -q .)
+    ```
+    above does not "name" the image and the port forward seems to not work
 [ ] rubocop and erblint ? and binstubs?
     ```sh
     def run_rubocop_autocorrections

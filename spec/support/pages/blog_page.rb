@@ -7,7 +7,7 @@ module Pages
 
     include Helpers::FormsHelper[
       "/blogs", # Rails.application.routes.url_helpers.blogs_path,
-      "blog" # Blog.name.downcase
+      "blog" # Blog.name.underscore
     ]
 
     element :new_blog, "a", text: "New blog"
@@ -23,7 +23,7 @@ module Pages
       element :blog_text, "p"
     end
 
-    def message
+    def notification
       # NOTE: rails success messge is
       #   <p style=\"color: green\">Blog was successfully created.</p>
       # Presumably failure message is

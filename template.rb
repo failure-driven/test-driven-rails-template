@@ -37,9 +37,8 @@ copy_file "spec/support/force_api_error.rb"
 copy_file "spec/support/pause_service.rb"
 copy_file "Makefile"
 
-# empty_directory "spec/features"
-
 template "spec/features/it_works_spec.rb.tt"
+template ".tool-versions.tt"
 
 gsub_file '.rspec', '--require spec_helper', '--require rails_helper'
 inject_into_file ".rspec", after: "--require rails_helper\n" do
@@ -110,3 +109,13 @@ run "make build"
 #     rails_command "webpacker:install:react"
 #   end
 # end
+
+inject_into_file(
+  ".gitignore",
+) do
+  <<~RUBY
+
+    # ignore rubocop generated assets
+    /rubocop_cache
+  RUBY
+end

@@ -51,7 +51,20 @@ RSpec/ExampleLength:
     - method_call
   Exclude:
     - spec/features/**/*
+    - spec/views/**/*
 
 RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
+
+RSpecRails/InferredSpecType:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
