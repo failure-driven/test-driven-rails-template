@@ -10,8 +10,9 @@ rails _8.0.2_ new rails8-demo \
     --minimal \
     --skip-test \
     --skip-keeps \
-    --no-skip-turbo \
     --no-skip-javascript \
+    --no-skip-rubocop \
+    --no-skip-turbo \
     --javascript importmap \
     --template test-driven-rails-template/template.rb
 

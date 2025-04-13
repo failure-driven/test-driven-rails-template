@@ -20,11 +20,11 @@ test:
 
 .PHONY: lint
 lint:
-	bundle exec rubocop
+	bin/rubocop
 
 .PHONY: lint-fix
 lint-fix:
-	bundle exec rubocop -A
+	bin/rubocop -A
 
 .PHONY: annotate
 annotate:
