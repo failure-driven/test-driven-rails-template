@@ -42,6 +42,20 @@ gem "turbo-rails"
 gem "stimulus-rails"
 ```
 
+## NOTE: more skips
+
+skip unneeded options that add a bunch of routes making the annotations in
+config/routes.rb a bit long
+
+```
+rails new rails8-demo \
+    ...
+    --skip-action-mailer \
+    --skip-action-mailbox \
+    --skip-active-storage \
+    ...
+```
+
 # test-driven-rails-template
 
 A Rails template to bootstrap test driven rails project. The template is in
