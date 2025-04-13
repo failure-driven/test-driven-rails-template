@@ -177,11 +177,11 @@ more background
         - [ ] Form field with errors?
         - [ ] React component
 
-[ ] has an issue with method: :delete and turbo
-[x] annotations
+- [ ] has an issue with method: :delete and turbo
+- [x] annotations
     - [x] controllers `chusaku`
     - [x] models `annotaterb`
-[ ] erb-lint https://github.com/Shopify/erb_lint
+- [ ] erb-lint https://github.com/Shopify/erb_lint
     and https://github.com/Shopify/better-html#configuration
     ```sh
     bundle add erb_lint
@@ -190,50 +190,50 @@ more background
     # probably need a .better-html.yml as well
     # but had a bunch of issues - need to read the docs more
     ```
-[ ] make it work with `Dockerfile` via `--no-skip-docker`
+- [ ] make it work with `Dockerfile` via `--no-skip-docker`
     ```sh
     docker run --env RAILS_ENV=development -p 3000:3000 $(docker build -q .)
     ```
     above does not "name" the image and the port forward seems to not work
-[ ] rubocop and erblint ? and binstubs?
+- [ ] rubocop and erblint ? and binstubs?
     ```sh
     def run_rubocop_autocorrections
       run_with_clean_bundler_env "bin/rubocop -A --fail-level A > /dev/null || true"
       run_with_clean_bundler_env "bin/erblint --lint-all -a > /dev/null || true"
     end
     ```
-[ ] example using the pause service and force api error?
+- [ ] example using the pause service and force api error?
     - have added a concern and buttons that change state in demo#show but did
       not manage the test to succeed?
-[ ] deal with `.rubocop.yml` conflict (only rails 7 not rails 8)
-[ ] handle `bundle install` when no internet
-[ ] binstub for bin/dev - rails 7 only? seems ok in rails 8
-[ ] Makefile vs Justfile
-[ ] structure.sql over schema.rb
-[ ] fix if there are old versions of gems installed and it breaks on trying to
-    install rspec
-[ ] pass parameters like --database and --skip-test directly in the template.rb
-[ ] add files with some demo tests
-[ ] make some of this setup more configurable
-[ ] add a test build to make sure this template can still create a rails
-    project based on various starting versions of Rails, Ruby and Node
+- [ ] deal with `.rubocop.yml` conflict (only rails 7 not rails 8)
+- [ ] handle `bundle install` when no internet
+- [ ] binstub for bin/dev - rails 7 only? seems ok in rails 8
+- [ ] Makefile vs Justfile
+- [ ] structure.sql over schema.rb
+- [ ] fix if there are old versions of gems installed and it breaks on trying to
+      install rspec
+- [ ] pass parameters like --database and --skip-test directly in the template.rb
+- [ ] add files with some demo tests
+- [ ] make some of this setup more configurable
+- [ ] add a test build to make sure this template can still create a rails
+      project based on various starting versions of Rails, Ruby and Node
 
 ### DONE
 
-[x] rspec binstub
-[x] add capybara setup
-[x] test route
-    ```ruby
-    if Rails.env.test?
-      # a test only route used by spec/features/it_works_spec.rb
-      get "test_root", to: "rails/welcome#index", as: "test_root_rails"
-    end
-    ```
-[x] .rspec `--include rails_helper`
-[x] rubocop -A
-[x] can you populate via it_works_spec.rb via ~~ERB~~ .tt
-[x] see how good a "modify works" - seems OK
-[x] rubocop setup
-[x] make sure all example steps are displayed
+- [x] rspec binstub
+- [x] add capybara setup
+- [x] test route
+      ```ruby
+      if Rails.env.test?
+        # a test only route used by spec/features/it_works_spec.rb
+        get "test_root", to: "rails/welcome#index", as: "test_root_rails"
+      end
+      ```
+- [x] .rspec `--include rails_helper`
+- [x] rubocop -A
+- [x] can you populate via it_works_spec.rb via ~~ERB~~ .tt
+- [x] see how good a "modify works" - seems OK
+- [x] rubocop setup
+- [x] make sure all example steps are displayed
     - as per https://github.com/railsware/rspec-example_steps/issues/14
     - is this new in rails 8 again?
