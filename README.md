@@ -17,9 +17,9 @@ rails _8.0.2_ new rails8-demo \
     --template test-driven-rails-template/template.rb
 
 # run any installs depending on selected options
-bin/rails importmap:install
-bin/rails stimulus:install:importmap
-bin/rails turbo:install:importmap
+bin/rails javascript:install:esbuild
+bin/rails stimulus:install
+bin/rails turbo:install
 
 # manually add
 # and fix app/javascript/application.js
