@@ -23,42 +23,47 @@
 #       rm spec/support/pages/blog_page.rb
 #
 # also update the related request specs:
-#   spec/requests/blogs_spec.rb
-#     let(:valid_attributes) {
-#       {
-#         title: "blog title",
-#         body: "blog body",
-#         author: "blog author",
+#
+#   with git apply:
+#     git apply ../test-driven-rails-template/patches/fix_blog_specs.patch
+#
+#   or manually:
+#     spec/requests/blogs_spec.rb
+#       let(:valid_attributes) {
+#         {
+#           title: "blog title",
+#           body: "blog body",
+#           author: "blog author",
+#         }
 #       }
-#     }
-#     ...
-#     let(:new_attributes) {
-#       {
+#       ...
+#       let(:new_attributes) {
+#         {
+#           title: "NEW blog title",
+#           body: "NEW blog body",
+#           author: "NEW blog author",
+#         }
+#       }
+#       ...
+#       expect(blog).to have_attributes(
 #         title: "NEW blog title",
 #         body: "NEW blog body",
 #         author: "NEW blog author",
-#       }
-#     }
-#     ...
-#     expect(blog).to have_attributes(
-#       title: "NEW blog title",
-#       body: "NEW blog body",
-#       author: "NEW blog author",
-#     )
-#
-# and the related model specs:
-#   spec/models/blog_spec.rb
-#     it "is valid" do
-#       blog = Blog.new(
-#         title: "the title",
-#         body: "the body",
-#         author: "the author",
 #       )
-#       expect(blog).to be_valid
-#     end
 #
-# hint some tests like view tests may need
-#     it "description", :aggregate_failures ado
+#     and the related model specs:
+#       spec/models/blog_spec.rb
+#         it "is valid" do
+#           blog = Blog.new(
+#             title: "the title",
+#             body: "the body",
+#             author: "the author",
+#           )
+#           expect(blog).to be_valid
+#         end
+#
+#     hint some tests like view tests may need
+#       it "description", :aggregate_failures do
 
 RSpec.feature "Demonstrate blog CRUD methods", :js do
   let(:blog_page) { Pages::BlogPage.new }
@@ -127,6 +132,7 @@ RSpec.feature "Demonstrate blog CRUD methods", :js do
     end
 
     Then "the user is notified the blog was updated" do
+      expect(page).to have_text "Blog was successfully destroyed."
       expect(blog_page.notification).to eq "Blog was successfully destroyed."
     end
 

@@ -1,0 +1,154 @@
+diff --git a/spec/features/blog_crud_spec.rb b/spec/features/blog_crud_spec.rb
+index 02e09e7..0d76373 100644
+--- a/spec/features/blog_crud_spec.rb
++++ b/spec/features/blog_crud_spec.rb
+@@ -1,76 +1,10 @@
+ # frozen_string_literal: true
+
+-# NOTE: Demonstration of how to use features. This spec can be made passing
+-#       using a rails scaffold
+-#
+-#   bin/rails \
+-#     generate scaffold Blog \
+-#     title:string \
+-#     body:text \
+-#     author:string \
+-#     --skip-helper \
+-#     --test-framework rspec \
+-#     --force
+-#
+-#   may need to run a couple of times
+-#
+-# AND
+-#   bin/rails db:migrate
+-#
+-# alternatley this spec and associated Page Object Model can be deleted
+-# with:
+-#       rm spec/features/blog_crud_spec.rb
+-#       rm spec/support/pages/blog_page.rb
+-#
+-# also update the related request specs:
+-#
+-#   with git apply:
+-#     git apply ../test-driven-rails-template/patches/fix_blog_specs.patch
+-#
+-#   or manually:
+-#     spec/requests/blogs_spec.rb
+-#       let(:valid_attributes) {
+-#         {
+-#           title: "blog title",
+-#           body: "blog body",
+-#           author: "blog author",
+-#         }
+-#       }
+-#       ...
+-#       let(:new_attributes) {
+-#         {
+-#           title: "NEW blog title",
+-#           body: "NEW blog body",
+-#           author: "NEW blog author",
+-#         }
+-#       }
+-#       ...
+-#       expect(blog).to have_attributes(
+-#         title: "NEW blog title",
+-#         body: "NEW blog body",
+-#         author: "NEW blog author",
+-#       )
+-#
+-#     and the related model specs:
+-#       spec/models/blog_spec.rb
+-#         it "is valid" do
+-#           blog = Blog.new(
+-#             title: "the title",
+-#             body: "the body",
+-#             author: "the author",
+-#           )
+-#           expect(blog).to be_valid
+-#         end
+-#
+-#     hint some tests like view tests may need
+-#       it "description", :aggregate_failures do
+-
+ RSpec.feature "Demonstrate blog CRUD methods", :js do
+   let(:blog_page) { Pages::BlogPage.new }
+
+   scenario "A blog is empty and new blog posts can be generated" do
+     When "the blog is visited" do
+-      pending "you generate scaffold Blog to see how this test runs"
+       blog_page.load
+     end
+
+diff --git a/spec/models/blog_spec.rb b/spec/models/blog_spec.rb
+index fc07b0d..5514d79 100644
+--- a/spec/models/blog_spec.rb
++++ b/spec/models/blog_spec.rb
+@@ -1,5 +1,12 @@
+ require "rails_helper"
+
+ RSpec.describe Blog, type: :model do
+-  pending "add some examples to (or delete) #{__FILE__}"
++  it "is valid" do
++    blog = Blog.new(
++      title: "the title",
++      body: "the body",
++      author: "the author",
++    )
++    expect(blog).to be_valid
++  end
+ end
+diff --git a/spec/requests/blogs_spec.rb b/spec/requests/blogs_spec.rb
+index b8bc5a7..9cb99eb 100644
+--- a/spec/requests/blogs_spec.rb
++++ b/spec/requests/blogs_spec.rb
+@@ -17,7 +17,11 @@ RSpec.describe "/blogs", type: :request do
+   # Blog. As you add validations to Blog, be sure to
+   # adjust the attributes here as well.
+   let(:valid_attributes) {
+-    skip("Add a hash of attributes valid for your model")
++    {
++      title: "blog title",
++      body: "blog body",
++      author: "blog author",
++    }
+   }
+
+   let(:invalid_attributes) {
+@@ -86,14 +90,22 @@ RSpec.describe "/blogs", type: :request do
+   describe "PATCH /update" do
+     context "with valid parameters" do
+       let(:new_attributes) {
+-        skip("Add a hash of attributes valid for your model")
++        {
++          title: "NEW blog title",
++          body: "NEW blog body",
++          author: "NEW blog author",
++        }
+       }
+
+       it "updates the requested blog" do
+         blog = Blog.create! valid_attributes
+         patch blog_url(blog), params: {blog: new_attributes}
+         blog.reload
+-        skip("Add assertions for updated state")
++        expect(blog).to have_attributes(
++          title: "NEW blog title",
++          body: "NEW blog body",
++          author: "NEW blog author",
++        )
+       end
+
+       it "redirects to the blog" do
+diff --git a/spec/views/blogs/show.html.erb_spec.rb b/spec/views/blogs/show.html.erb_spec.rb
+index 9483ab7..0f8b1fa 100644
+--- a/spec/views/blogs/show.html.erb_spec.rb
++++ b/spec/views/blogs/show.html.erb_spec.rb
+@@ -9,7 +9,7 @@ RSpec.describe "blogs/show", type: :view do
+     ),)
+   end
+
+-  it "renders attributes in <p>" do
++  it "renders attributes in <p>", :aggregate_failures do
+     render
+     expect(rendered).to match(/Title/)
+     expect(rendered).to match(/MyText/)

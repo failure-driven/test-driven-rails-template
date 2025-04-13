@@ -35,8 +35,8 @@ annotate:
 .PHONY: build
 build: test lint annotate
 
-.PHONY: run
-run:
+.PHONY: dev
+dev:
 	bin/dev
 
 .PHONY: clean
@@ -64,5 +64,5 @@ usage:
 	@echo
 	@echo "${YELLOW}make build${RESET}               test & lint the app"
 	@echo
-	@echo "${YELLOW}make run${RESET}                 run the app"
+	@echo "${YELLOW}make dev${RESET}                 run the app in dev mode"
 	@echo

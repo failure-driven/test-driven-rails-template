@@ -19,6 +19,7 @@ RSpec.feature "Demo a number of ideas", :js do
         "A rails form_for with a submit inside with enabled/disabled styling",
         "A view_componewnt action_button using stimulus",
         "A stimulus component",
+        "A react component",
       ])
     end
 
@@ -72,6 +73,14 @@ RSpec.feature "Demo a number of ideas", :js do
 
     When "the sitmulus component is clicked" do
       demo_page.stimulus_component.click
+    end
+
+    Then "the page is reloaded" do
+      expect(page).to have_current_path(demo_path)
+    end
+
+    When "the react component is clicked" do
+      demo_page.react_component.click
     end
 
     Then "the page is reloaded" do

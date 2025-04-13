@@ -10,21 +10,35 @@ rails _8.0.2_ new rails8-demo \
     --minimal \
     --skip-test \
     --skip-keeps \
-    -m test-driven-rails-template/template.rb
-
-# or with JS and CSS processing
-rails _8.0.2_ new rails8-demo \
-    --database sqlite3 \
-    --skip-test \
-    --skip-keeps \
     --no-skip-turbo \
     --no-skip-javascript \
-    --javascript=importmap \
-    -m test-driven-rails-template/template.rb
+    --javascript importmap \
+    --template test-driven-rails-template/template.rb
 
+# run any installs depending on selected options
 bin/rails importmap:install
 bin/rails stimulus:install:importmap
 bin/rails turbo:install:importmap
+
+# manually add
+# and fix app/javascript/application.js
+yarn add react react-dom
+
+make
+make build
+make dev
+```
+
+## NOTE: rails new minimal
+
+**NOTE:** with `--minimal` flag and `--no-skip-turbo` the gem installs seem to be
+skipped
+
+```ruby
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
 ```
 
 # test-driven-rails-template
@@ -101,6 +115,35 @@ heroku buildpacks:add heroku/ruby --index 2
 git push heroku master
 heroku run rake db:migrate
 ```
+
+## React JS and esbuild vs importmaps
+
+I attempted to go with importmaps but ran into a dead end to have Rails8 and JSX just work. As such I switched to esbuild
+
+as per
+- https://ryanbigg.com/2023/06/rails-7-react-typescript-setup
+
+more background
+- looking for a way toh Rails 8 + importmaps + React + JSX ?
+    - reading [Creating a Rails app with a React.js frontend using esbuild - Ely Karr](
+      https://medium.com/@elykarr/creating-a-rails-app-with-a-react-js-frontend-using-esbuild-40152b5b51a)
+      says not really and to use esbuild
+    - reading https://learnetto.com/tutorials/how-to-use-react-with-rails - also says no
+    - there sounds like there was an old gem (4 years old) according to
+      [George Gavrilchik - Ruby on Rails with React on Typescript using importmaps](
+      https://dev.to/gavrilarails/ruby-on-rails-with-react-on-typescript-using-importmaps-5082)
+      the gem https://github.com/mtgrosser/jass-react-jsx
+    - and even DHH has some `htm` stuff he promotes here
+      [![
+      Alpha preview: Using React with importmaps on Rails 7 - David Heinemeier Hansson
+      ](
+        http://img.youtube.com/vi/k73LKxim6tw/0.jpg
+      )](https://youtu.be/k73LKxim6tw)
+
+- another idea is to creating a seperate app in NextJS like [Rails and Next.js:
+  the perfect combination for modern web development (Final part) - Raphael
+  Almeida Araújo](
+  https://medium.com/@raphox/rails-and-next-js-the-perfect-combination-for-modern-web-development-final-part-a88af492a00)
 
 ## TODO
 

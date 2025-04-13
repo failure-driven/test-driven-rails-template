@@ -98,3 +98,20 @@
       },
   ) %>
 </section>
+
+<section data-testid="section-react_component">
+  <p>
+    A <strong>react</strong> component
+  </p>
+
+  <%= render(ReactComponent.new(
+      component_name: "HelloReact",
+      data: {
+        props: {
+          url: demo_path,
+          disableWith: "fetching ...",
+          testid: "react_component",
+        }
+      },
+  )) %>
+</section>
